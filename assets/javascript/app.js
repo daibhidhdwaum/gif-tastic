@@ -30,11 +30,15 @@ function createButton(){
 
             var gifDiv = $("<div>");
 
-            
+            var rating = results[i].rating;
+            var p = $("<p>").text("Rating: " +rating);
 
             var bandImage = $("<img>");
             bandImage.attr("src", results[i].images.original_still.url);
             console.log(results);
+
+            gifDiv.prepend(p);
+            gifDiv.prepend(bandImage);
 
             $(".gifs").prepend(gifDiv);
         }
