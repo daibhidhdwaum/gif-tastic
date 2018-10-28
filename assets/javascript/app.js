@@ -1,24 +1,32 @@
 $(document).ready(function(){
     
 var topic = ["Father John Misty", "The Smiths", "Radiohead", "Depeche Mode", "Arctic Monkeys", "Blur", "Lambchop"];
+var results;
+var APIKey = "gOhT5yVr007PciFEeeVBlG3xEWywuguj";
 
-
+//generates a button for each band in the array
 function createButton(){
 
-
-    
     for(var i = 0; i < topic.length; i++){
-        topics = $("<button>");
-        $(".container").append(topics);
+        bands = $("<button>");
+        $(".container").append(bands);
         
-        topics.attr({
+        bands.attr({
             "class": "btn",
-            "data-name": topic[i],
-            "html": topic[i],
-        })   
+            "data-band-name": topic[i]
+        });  
     }
 }
-createButton();
-console.log(topic);
+    
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=&api_key=gOhT5yVr007PciFEeeVBlG3xEWywuguj";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+
+        console.log(queryURL);
+        console.log(response);
+        });       
 
 });
