@@ -21,6 +21,7 @@ h1 {
     color: white;
     margin: 0px;
     float: left;
+    float: clear;
 }
 
 .input {
