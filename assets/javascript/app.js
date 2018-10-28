@@ -18,7 +18,11 @@ function createButton(){
     }
 }
     createButton();
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=gOhT5yVr007PciFEeeVBlG3xEWywuguj&limit=10";
+
+    $(".btn").on("click", function(){
+    
+    var bands = $(this).attr("data-band-name");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + bands + "&api_key=gOhT5yVr007PciFEeeVBlG3xEWywuguj&limit=10";
 
     $.ajax({
         url: queryURL,
@@ -49,6 +53,7 @@ function createButton(){
         gifDiv.prepend(bandImage);
 
         
-        });       
+        });  
+    });    
 
 });
