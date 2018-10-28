@@ -31,6 +31,12 @@ h1 {
     
 }
 
+p {
+    font-family: 'Titillium Web', sans-serif;
+    text-transform: uppercase;
+    margin-left: 15px;
+}
+
 .input {
     font-family: 'Titillium Web', sans-serif;
     width: 200px;
@@ -44,6 +50,20 @@ h1 {
     margin-bottom: 50px;
 }
 
+.container {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .gifs {
     margin: 10px;
+}
+
+img {
+    border: 2px solid black;
+}
+
+form {
+    margin-top: 20px;
 }
