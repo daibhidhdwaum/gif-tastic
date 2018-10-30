@@ -2,12 +2,6 @@ $(document).ready(function(){
     
     var topic = ["Father John Misty", "The Smiths", "Radiohead", "Depeche Mode", "Arctic Monkeys", "Super Furry Animals", "Smashing Pumpkins"];
     var bandImage;
-
-        /*function displayBandName(){
-            var bandName = $(this).attr("data-name");
-
-            alert(bandName);
-        }*/
     
         //generates a button for each band in the array
         function createButton(){
@@ -29,19 +23,21 @@ $(document).ready(function(){
         createButton();
 
         //create new band button
+        //SOME ISSUES: AUTOMATICALLY DISPLAYS IMAGES NOT RELATED TO BAND
+        //CANNOT CLICK ANY OTHER BUTTONS AFTER IT HAS BEEN CREATED
         $("#new-band").on("click", function(event){
 
             $(".create-button").empty();
                 
             event.preventDefault();
 
-            var newBand  = $("#band").val();
+            var newBand  = $("#band").val().trim();
 
             topic.push(newBand);
 
             createButton();
 
-            });//close new band
+        });//close new band
 
         //button to generate 10 gifs 
         $(".btn").on("click", function(){
@@ -61,11 +57,15 @@ $(document).ready(function(){
                         var gifDiv = $("<div>");
         
                         var rating = results[i].rating;
-                        var p = $("<p>").text("Rating: " +rating);
+                        var p = $("<p>").text("Rating: " + rating);
         
                         bandImage = $("<img>");
-                        bandImage.attr("src", results[i].images.original.url);
-                        bandImage.attr("src", results[i].images.original_still.url);
+                        bandImage.attr({"src": results[i].images.original_still.url,
+                                                    "data-animate": results[i].images.original.url,
+                                                    "data-still": results[i].images.original_still.url,
+                                                    "data-state": "still",
+                                                    "id": "gif"
+                                                });
                         
                         console.log(results);
         
@@ -74,26 +74,28 @@ $(document).ready(function(){
         
                         $(".gifs").prepend(gifDiv);
         
-                            //UNSURE HOW TO ANIMATE!!!!
-                            $(".gifs").on("click", function(){
-                                var state = $(this).attr(bandImage);
-                        
-                                if (state === "src", results[i].images.original_still.url){
-                                
-                                }else {
-                                
-                                }
-                            })//image still/animate close
-
                     }//close for loop
 
+                      //WILL ONLY ANIMATE FIRST GIF
+                      //WILL NOT STOP ANIMATION AGAIN
+                      $("#gif").on("click", function() {
+
+                        var state = $(this).attr("data-state");
+
+                        if (state === "still") {
+                            $(this).attr("src", $(this).attr("data-animate"));
+                            
+                        } else {
+                            $(this).attr("src", $(this).attr("data-still"));
+                        }
+                        
+                    });  
+                    
                     //console.log(queryURL);
-                    console.log(response);
+                    //console.log(response);
             
                     gifDiv.prepend(bandImage);
+                    
                 });//ajax call close
-
         });//band button close
-
-    
 });//document close
