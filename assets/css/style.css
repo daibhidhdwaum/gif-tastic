@@ -2,7 +2,7 @@ body {
     background-color:#B1BF8F;
 }
 
-.btn {
+.btn, .submit {
     /*margin: 50px 10px 50px 10px;*/
     border-radius: 20px;
     /*background-image:linear-gradient(#aaaaaa, white);*/
@@ -66,4 +66,8 @@ img {
 
 form {
     margin-top: 20px;
+}
+
+::-webkit-input-placeholder {
+    padding: 5px;
 }

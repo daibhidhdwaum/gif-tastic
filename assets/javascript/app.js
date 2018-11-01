@@ -16,9 +16,9 @@ $(document).ready(function(){
                 }); 
     
                 bands.text(topic[i]);
-                console.log(topic); 
+                //console.log(topic); 
             }
-        }//end create button
+        };//end create button
 
         createButton();
 
@@ -26,11 +26,10 @@ $(document).ready(function(){
         //SOME ISSUES: AUTOMATICALLY DISPLAYS IMAGES NOT RELATED TO BAND
         //CANNOT CLICK ANY OTHER BUTTONS AFTER IT HAS BEEN CREATED
         $("#new-band").on("click", function(event){
+            event.preventDefault();
 
             $(".create-button").empty();
                 
-            event.preventDefault();
-
             var newBand  = $("#band").val().trim();
 
             topic.push(newBand);
@@ -40,7 +39,7 @@ $(document).ready(function(){
         });//close new band
 
         //button to generate 10 gifs 
-        $(".btn").on("click", function(){
+        $(document).on("click", ".btn", function(){
         
             var bands = $(this).attr("data-band-name");
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + bands + "&api_key=gOhT5yVr007PciFEeeVBlG3xEWywuguj&limit=10";
@@ -52,6 +51,7 @@ $(document).ready(function(){
                 }).then(function(response) {
                     var results = response.data;
                     
+                    
                     for(var i = 0; i< results.length; i++) {
         
                         var gifDiv = $("<div>");
@@ -60,42 +60,49 @@ $(document).ready(function(){
                         var p = $("<p>").text("Rating: " + rating);
         
                         bandImage = $("<img>");
-                        bandImage.attr({"src": results[i].images.original_still.url,
-                                                    "data-animate": results[i].images.original.url,
-                                                    "data-still": results[i].images.original_still.url,
-                                                    "data-state": "still",
-                                                    "id": "gif"
-                                                });
                         
-                        console.log(results);
+                        bandImage.attr({"src": results[i].images.original_still.url,
+                                        "data-animate": results[i].images.original.url,
+                                        "data-still": results[i].images.original_still.url,
+                                        "data-state": "still",
+                                        "class": "gif"
+                                    });
+
+                        
+                        
+                        //console.log(results);
         
                         gifDiv.prepend(p);
                         gifDiv.prepend(bandImage);
         
                         $(".gifs").prepend(gifDiv);
         
-                    }//close for loop
+                    };//close for loop
 
-                      //WILL ONLY ANIMATE FIRST GIF
-                      //WILL NOT STOP ANIMATION AGAIN
-                      $("#gif").on("click", function() {
-
-                        var state = $(this).attr("data-state");
-
-                        if (state === "still") {
-                            $(this).attr("src", $(this).attr("data-animate"));
-                            
-                        } else {
-                            $(this).attr("src", $(this).attr("data-still"));
-                        }
-                        
-                    });  
+                      
                     
                     //console.log(queryURL);
                     //console.log(response);
             
                     gifDiv.prepend(bandImage);
-                    
+
                 });//ajax call close
         });//band button close
+
+          //WILL ONLY ANIMATE FIRST GIF
+                      //WILL NOT STOP ANIMATION AGAIN
+                      //TRIED INSIDE AND OUTSIDE OF LOOP
+                      $(document).on("click", ".gif", function() {
+
+                        var state = $(this).attr("data-state");
+
+                        if (state === "still") {
+                            $(this).attr("src", $(this).attr("data-animate"));
+                            $(this).attr("data-state", "animate");
+                        } else {
+                            $(this).attr("src", $(this).attr("data-still"));
+                            $(this).attr("data-state", "still");
+                        }
+                        console.log("hello");
+                    });
 });//document close
