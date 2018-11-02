@@ -2,6 +2,20 @@ body {
     background-color:#B1BF8F;
 }
 
+h1 {
+    /*margin: 20px auto 20px auto;*/
+    font-size: 100px;
+    font-family: 'Titillium Web', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: 'Titillium Web', sans-serif;
+    text-transform: uppercase;
+    margin-left: 15px;
+}
+
 .btn, .submit {
     border-radius: 20px;
     /*background-image:linear-gradient(#aaaaaa, white);*/
@@ -19,12 +33,6 @@ body {
     border-radius: 20px;
 }
 
-.btn:visited {
-    background-color: transparent; 
-    color: black;
-    border: none;
-}
-
 .jumbotron {
     /*background-color: rgb(36, 34, 34);*/
     background-image:linear-gradient(rgb(44, 16, 16), black);
@@ -35,19 +43,7 @@ body {
     box-shadow: 3px 3px 5px 6px black;
 }
 
-h1 {
-    /*margin: 20px auto 20px auto;*/
-    font-size: 100px;
-    font-family: 'Titillium Web', sans-serif;
-    color: white;
-    text-align: center;
-}
 
-p {
-    font-family: 'Titillium Web', sans-serif;
-    text-transform: uppercase;
-    margin-left: 15px;
-}
 
 .input {
     font-family: 'Titillium Web', sans-serif;
@@ -70,12 +66,23 @@ p {
     margin-right: auto;
 }
 
+.gif-container{
+    display: flex;
+    justify-content: center;
+}
+
 .gifs {
-    margin: 10px;
+    margin-bottom: 10px;
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
 }
 
 img {
     border: 2px solid black;
+    margin: 20px;
 }
 
 form {

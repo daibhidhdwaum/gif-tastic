@@ -23,9 +23,8 @@ $(document).ready(function(){
         createButton();
 
         //create new band button
-        //SOME ISSUES: AUTOMATICALLY DISPLAYS IMAGES NOT RELATED TO BAND
-        //CANNOT CLICK ANY OTHER BUTTONS AFTER IT HAS BEEN CREATED
         $("#new-band").on("click", function(event){
+            
             event.preventDefault();
 
             $(".create-button").empty();
@@ -89,7 +88,7 @@ $(document).ready(function(){
                 });//ajax call close
         });//band button close
 
-          
+                        //logic to set images to animate or still
                       $(document).on("click", ".gif", function() {
 
                         var state = $(this).attr("data-state");
