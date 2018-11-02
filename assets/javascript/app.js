@@ -89,9 +89,7 @@ $(document).ready(function(){
                 });//ajax call close
         });//band button close
 
-          //WILL ONLY ANIMATE FIRST GIF
-                      //WILL NOT STOP ANIMATION AGAIN
-                      //TRIED INSIDE AND OUTSIDE OF LOOP
+          
                       $(document).on("click", ".gif", function() {
 
                         var state = $(this).attr("data-state");
